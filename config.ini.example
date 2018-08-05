@@ -1,0 +1,4 @@
+[Re2o]
+hostname = re2o.example.net
+username = my_api_username
+password = my_api_password
