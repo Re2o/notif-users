@@ -1,0 +1,3 @@
+[submodule "re2oapi"]
+	path = re2oapi
+	url = https://gitlab.adm.crans.org/nounous/re2oapi.git
