@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 from django.template import loader, Context
 
 from pprint import pprint
+import sys
 
 config = ConfigParser()
 config.read('config.ini')
@@ -18,6 +19,10 @@ api_username = config.get('Re2o', 'username')
 api_client = Re2oAPIClient(api_hostname,api_username,api_password)
 
 client_hostname = socket.gethostname().split('.',1)[0]
+
+for arg in sys.argv:
+    if arg=="--force":
+        notif_end_adhesion(api_client)
 
 def notif_end_adhesion(api_client):
     asso_options = api_client.list("preferences/assooption")
@@ -40,3 +45,10 @@ def notif_end_adhesion(api_client):
                     html_message = template.render(context)
             )
 
+
+for service in api_client.list("services/regen/"):
+    if service['hostname'] == client_hostname and \
+        service['service_name'] == 'mail' and \
+        service['need_regen']:
+        notif_end_adhesion(api_client)
+        api_client.patch(service['api_url'], data={'need_regen': False})
