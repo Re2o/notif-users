@@ -1,27 +1,21 @@
 <p>Bonjour {{nom}},</p>
 
-<P>Ton adhésion arrive à son therme dans {{temps}} jours.</P>
+<p>Ta connexion internet va expirer dans {{temps}} jours.</p>
 
-{% if online %}
-<p>Tu peux renouveller ton adhésion en ligne sur <a href"{{link}}">Mon Profil</a>.</p>
-<p>Tu peux également contacter un membre de {{asso_name}} pour renouveller ton adhésion</p>
-{% else %}
-<p>Pour renouveller ton adhésion, contacte un membre de {{asso_name}}.</p>
-{% endif %}
+{{message}}
 
-<p>A bientôt.</p>
+<p>Tu peux gérer ta connexion en ligne sur <a href={{link}}>Mon profil</a></p>
+<p>Tu peux bien évidemment également contacter un membre de {{asso_name}} pour renouveller ton adhésion</p>
+
+<p>A bientôt !</p>
 
 <hr>
 
 <p>Hi {{nom}},</p>
 
-<P>Your subscription comes to an end in {{temps}} days.</P>
+<p>Your subscription comes to an end in {{temps}} days.</p>
 
-{% if online %}
-<p>You can renew it online on <a href"{{link}}">My Profil</a>.</p>
+<p>You can manage it online on <a href={{link}}>My Profil</a>.</p>
 <p>You can also contat a member of {{asso_name}} to renew it.</p>
-{% else %}
-<p>To renew it, contact a member of {{asso_name}}</p>
-{% endif %}
 
 <p>Regards.</p>
