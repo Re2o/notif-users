@@ -16,7 +16,7 @@ api_hostname = config.get('Re2o', 'hostname')
 api_password = config.get('Re2o', 'password')
 api_username = config.get('Re2o', 'username')
 
-api_client = Re2oAPIClient(api_hostname,api_username,api_password)
+api_client = Re2oAPIClient(api_hostname,api_username,api_password, use_tls=False)
 
 api_mailserver = config.get('Mail', 'mailserver')
 api_port = config.get('Mail', 'port')
