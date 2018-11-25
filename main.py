@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from configparser import ConfigParser
 import socket
+import os
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -9,8 +10,11 @@ from re2oapi import Re2oAPIClient, ApiSendMail
 from pprint import pprint
 import sys
 
+path =(os.path.dirname(os.path.abspath(__file__)))
+
 config = ConfigParser()
-config.read('config.ini')
+config.read(path+'/config.ini')
+
 
 api_hostname = config.get('Re2o', 'hostname')
 api_password = config.get('Re2o', 'password')
@@ -31,7 +35,7 @@ ENV = Environment(loader=FileSystemLoader('.'))
 def notif_end_adhesion(api_client):
     asso_options = api_client.view("preferences/assooption/")
     general_options = api_client.view("preferences/generaloption/")
-    template = ENV.get_template("templates/email_fin_adhesion")
+    template = ENV.get_template(path + "/templates/email_fin_adhesion")
 
     for result in api_client.list("reminder/get-users"):
         for user in result["users_to_remind"]:
