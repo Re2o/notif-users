@@ -30,12 +30,12 @@ api_sendmail = ApiSendMail(api_mailserver, api_port)
 client_hostname = socket.gethostname().split('.',1)[0]
 
 # Création de l'environnement Jinja
-ENV = Environment(loader=FileSystemLoader('.'))
+ENV = Environment(loader=FileSystemLoader('/'))
 
 def notif_end_adhesion(api_client):
     asso_options = api_client.view("preferences/assooption/")
     general_options = api_client.view("preferences/generaloption/")
-    template = ENV.get_template("/templates/email_fin_adhesion")
+    template = ENV.get_template(path + "/templates/email_fin_adhesion")
 
     for result in api_client.list("reminder/get-users"):
         for user in result["users_to_remind"]:
