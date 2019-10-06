@@ -47,12 +47,13 @@ def notif_end_adhesion(api_client):
                 asso_name=asso_options["name"],
                 message=result["message"],
                 link=general_options["main_site_url"])
-            api_sendmail.send_mail(
-                general_options["email_from"],
-                user["get_mail"],
-                "Avis de fin d'adhésion / End of subscription notice",
-                reminder_mail
-            )
+            if user["get_mail"]:
+                api_sendmail.send_mail(
+                    general_options["email_from"],
+                    user["get_mail"],
+                    "Avis de fin d'adhésion / End of subscription notice",
+                    reminder_mail
+                )
 
 ## Manual command
 if "--force" in sys.argv:
